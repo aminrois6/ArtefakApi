@@ -44,6 +44,7 @@ class BerkasTransformer extends TransformerAbstract
                                         'id_sdlc' => $Model->id_sdlc,
                                         'nama_sdlc' => $Model->nama_sdlc,
                                     ],
+                                ],
                         'major' => $Model->major,
                         'minor' => $Model->minor,
                         'patch' => $Model->patch,
