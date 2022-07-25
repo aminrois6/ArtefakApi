@@ -29,6 +29,7 @@ class BerkasController extends Controller
       ->join('user', 'user.id_user', '=', 'project.id_user')
       ->join('sdlc', 'sdlc.id_sdlc', '=', 'project.id_sdlc')
       ->paginate(5);
+      
       // return response()->json($data);
 
       return fractal()
