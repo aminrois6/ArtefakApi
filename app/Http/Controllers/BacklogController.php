@@ -137,29 +137,6 @@ class BacklogController extends Controller
 
         $data->save();
         return response()->json($data);
-    }public function update2(Request $request, $id)
-    {
-      
-        header("Access-Control-Allow-Origin: *");
-        header("Access-Control-Allow-Methods: POST, GET, PUT, DELETE, OPTIONS");
-        header ("Content-Type: application/json");
-        
-        extract($request->json()->all());
-        $id_project = $request->id_project;
-        $id_versi = $request->id_versi;
-        $nama_artefak = $request->nama_artefak;
-        $id_jenis = $request->id_jenis;
-
-        $data = artefak::find($id);
-
-        $data->id_project = $id_project;
-        $data->id_versi = $id_versi;
-        $data->nama_artefak = $nama_artefak;
-        $data->deskripsi_artefak = '';
-        $data->id_jenis = $id_jenis;
-
-      $data->save();
-      return response()->json($data);
     }
     public function destroy($id)
     {
