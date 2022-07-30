@@ -127,6 +127,7 @@ class UsersController extends Controller
       header("Access-Control-Allow-Origin: *");
       header("Access-Control-Allow-Methods: POST, GET, PUT, DELETE, OPTIONS");
       header ("Content-Type: *");
+      header ("Content-Type: application/json");
 
       $email_user = $request->email_user;
       $password_user = $request->password_user;
