@@ -67,7 +67,6 @@ class BerkasController extends Controller
             ->toArray();
     }
 
-
     public function create(Request $request)
     {
     	// extract($request->json()->all());
