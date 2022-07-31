@@ -143,26 +143,17 @@ class ArtefakController extends Controller
         header ("Content-Type: application/json");
         
         extract($request->json()->all());
-        // $path = $request->file_artefak->store('/artefak', 'public');
         $id_project = $request->id_project;
         $id_versi = $request->id_versi;
         $nama_artefak = $request->nama_artefak;
-        // $deskripsi_artefak = $request->deskripsi_artefak;
-    // $file_artefak = $request->file_artefak;
-    // $path = $request->file_artefak->store('/artefak', 'public'); 
         $id_jenis = $request->id_jenis;
 
         $data = artefak::find($id);
-      //  $path2 = $data->file_artefak;
-        // Storage::disk('public')->delete($path2);
 
-        // $path = $file_artefak->store('/artefak', 'public');
-
-      $data->id_project = $id_project;
+        $data->id_project = $id_project;
         $data->id_versi = $id_versi;
         $data->nama_artefak = $nama_artefak;
         $data->deskripsi_artefak = '';
-        // $data->file_artefak = $path;
         $data->id_jenis = $id_jenis;
 
       $data->save();

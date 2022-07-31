@@ -79,7 +79,7 @@ class UsersController extends Controller
     }
     public function cariGoogle(Request $request)
     {
-      // extract($request->json()->all());
+      extract($request->json()->all());
       header("Access-Control-Allow-Origin: *");
       header("Access-Control-Allow-Methods: POST, GET, PUT, DELETE, OPTIONS");
       header ("Content-Type: *");
@@ -101,7 +101,7 @@ class UsersController extends Controller
 
     public function login(Request $request)
     {
-      // extract($request->json()->all());
+      extract($request->json()->all());
       header("Access-Control-Allow-Origin: *");
       header("Access-Control-Allow-Methods: POST, GET, PUT, DELETE, OPTIONS");
       header ("Content-Type: *");
@@ -123,11 +123,12 @@ class UsersController extends Controller
 
     public function update(Request $request, $id)
     {
+    	// extract($request->json()->all());
       header("Access-Control-Allow-Origin: *");
       header("Access-Control-Allow-Methods: POST, GET, PUT, DELETE, OPTIONS");
+      header ("Content-Type: *");
       header ("Content-Type: application/json");
 
-      extract($request->json()->all());
       $email_user = $request->email_user;
       $password_user = $request->password_user;
       $nama_user = $request->nama_user;

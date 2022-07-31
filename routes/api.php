@@ -19,14 +19,15 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::options('/users', 'UsersController@option');
 Route::post('/users','UsersController@create');
 Route::get('/users','UsersController@tampil');
-Route::options('/users/{id}', 'UsersController@option');
-Route::put('/users/{id}','UsersController@update');
+Route::options('/users/update/{id}', 'UsersController@option');
+Route::post('/users/update/{id}','UsersController@update');
 Route::delete('/users/{id}','UsersController@destroy');
-Route::post('/users/cari','UsersController@cari');
-Route::options('/users/carigoogle', 'UsersController@option');
-Route::post('/users/carigoogle','UsersController@cariGoogle');
-Route::options('/users/login', 'UsersController@option');
-Route::post('/users/login','UsersController@login');
+
+Route::post('/users/cari/','UsersController@cari');
+Route::options('/users/carigoogle/', 'UsersController@option');
+Route::post('/users/carigoogle/','UsersController@cariGoogle');
+Route::options('/users/login/', 'UsersController@option');
+Route::post('/users/login/','UsersController@login');
 
 
 Route::post('/sdlc','SdlcController@create');
