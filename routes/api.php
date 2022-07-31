@@ -22,7 +22,6 @@ Route::get('/users','UsersController@tampil');
 Route::options('/users/update/{id}', 'UsersController@option');
 Route::post('/users/update/{id}','UsersController@update');
 Route::delete('/users/{id}','UsersController@destroy');
-
 Route::post('/users/cari/','UsersController@cari');
 Route::options('/users/carigoogle/', 'UsersController@option');
 Route::post('/users/carigoogle/','UsersController@cariGoogle');
