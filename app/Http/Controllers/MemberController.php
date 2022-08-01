@@ -47,7 +47,6 @@ class MemberController extends Controller
       ->join('user', 'user.id_user', '=', 'member_project.id_user')
       ->join('role_project', 'role_project.id_role_project', '=', 'member_project.id_role_project')    
       ->join('sdlc', 'sdlc.id_sdlc', '=', 'project.id_sdlc')
-      ->join('user', 'user.id_user', '=', 'project.id_user')
       ->where ( 'member_project.id_project', '=', $cari)   
       ->paginate(10);
 
@@ -69,10 +68,11 @@ class MemberController extends Controller
       $cari = $request->id_user;
 
       $data = member::join('project', 'project.id_project', '=', 'member_project.id_project')
-      ->join('user', 'user.id_user', '=', 'member_project.id_user')
-      ->join('role_project', 'role_project.id_role_project', '=', 'member_project.id_role_project')    
+      // ->join('user', 'user.id_user', '=', 'member_project.id_user')
+      ->join('role_project', 'role_project.id_role_project', '=', 'member_project.id_role_project')
+      ->join('user', 'user.id_user', '=', 'project.id_user')
       ->join('sdlc', 'sdlc.id_sdlc', '=', 'project.id_sdlc')
-      ->where ( 'member_project.id_user', '=', $cari)   
+      ->where ('member_project.id_user', '=', $cari)   
       ->paginate(10);
 
       return fractal()
