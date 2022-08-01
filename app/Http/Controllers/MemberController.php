@@ -10,6 +10,10 @@ use League\Fractal\Pagination\IlluminatePaginatorAdapter;
 
 class MemberController extends Controller
 {
+    public function option(Request $request){
+    header("Access-Control-Allow-Origin: *");
+    header("Access-Control-Allow-Methods: POST, GET, PUT, DELETE, OPTIONS");
+}
     public function tampil(Request $request)
     {
        header("Access-Control-Allow-Origin: *");
@@ -19,7 +23,7 @@ class MemberController extends Controller
       ->join('user', 'user.id_user', '=', 'member_project.id_user')
       ->join('role_project', 'role_project.id_role_project', '=', 'member_project.id_role_project')    
       ->join('sdlc', 'sdlc.id_sdlc', '=', 'project.id_sdlc')  
-      ->paginate(5);
+      ->paginate(10);
       // return response()->json($data);
 
       return fractal()
@@ -31,11 +35,61 @@ class MemberController extends Controller
             ])
             ->toArray();
     }
- 
+    public function tampilmember(Request $request)
+    {
+      header("Access-Control-Allow-Origin: *");
+      header("Access-Control-Allow-Methods: POST, GET, PUT, DELETE, OPTIONS");
+      header ("Content-Type: *");
+
+      $cari = $request->id_project;
+
+      $data = member::join('project', 'project.id_project', '=', 'member_project.id_project')
+      ->join('user', 'user.id_user', '=', 'member_project.id_user')
+      ->join('role_project', 'role_project.id_role_project', '=', 'member_project.id_role_project')    
+      ->join('sdlc', 'sdlc.id_sdlc', '=', 'project.id_sdlc')
+      ->join('user', 'user.id_user', '=', 'project.id_user')
+      ->where ( 'member_project.id_project', '=', $cari)   
+      ->paginate(10);
+
+      return fractal()
+            ->collection($data)
+            ->transformWith(new MemberTransformer)
+            ->paginateWith(new IlluminatePaginatorAdapter($data))
+            ->addMeta([
+              
+            ])
+            ->toArray();
+    }
+    public function tampiluser(Request $request)
+    {
+      header("Access-Control-Allow-Origin: *");
+      header("Access-Control-Allow-Methods: POST, GET, PUT, DELETE, OPTIONS");
+      header ("Content-Type: *");
+
+      $cari = $request->id_user;
+
+      $data = member::join('project', 'project.id_project', '=', 'member_project.id_project')
+      ->join('user', 'user.id_user', '=', 'member_project.id_user')
+      ->join('role_project', 'role_project.id_role_project', '=', 'member_project.id_role_project')    
+      ->join('sdlc', 'sdlc.id_sdlc', '=', 'project.id_sdlc')
+      ->where ( 'member_project.id_user', '=', $cari)   
+      ->paginate(10);
+
+      return fractal()
+            ->collection($data)
+            ->transformWith(new MemberTransformer)
+            ->paginateWith(new IlluminatePaginatorAdapter($data))
+            ->addMeta([
+              
+            ])
+            ->toArray();
+    }
 
     public function create(Request $request)
     {
     	// extract($request->json()->all());
+        header("Access-Control-Allow-Origin: *");
+      header ("Content-Type: application/json");
 
     	$data = new member();
 
@@ -67,6 +121,8 @@ class MemberController extends Controller
 
     public function destroy($id)
     {
+        header("Access-Control-Allow-Origin: *");
+      header ("Content-Type: *");
       $data = member::find($id);
       $data->delete();
 	

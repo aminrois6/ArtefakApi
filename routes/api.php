@@ -36,7 +36,7 @@ Route::delete('/sdlc/{id}','SdlcController@destroy');
 
 Route::post('/role','RoleController@create');
 Route::get('/role','RoleController@tampil');
-Route::put('/role/{id}','RoleController@update');
+Route::post('/role/{id}','RoleController@update');
 Route::delete('/role/{id}','RoleController@destroy');
 
 Route::post('/jenis','JenisController@create');
@@ -55,10 +55,14 @@ Route::delete('/project/{id}','ProjectController@destroy');
 // Route::get('/project/tampil','ProjectController@tampiluser');
 Route::get('/project/tampil',[App\Http\Controllers\ProjectController::class, 'tampiluser']);
 
+Route::options('/member', 'MemberController@option');
 Route::post('/member','MemberController@create');
 Route::get('/member','MemberController@tampil'); 
 Route::put('/member/{id}','MemberController@update');
+Route::options('/member/{id}', 'MemberController@option');
 Route::delete('/member/{id}','MemberController@destroy');
+Route::get('/member/tampil',[App\Http\Controllers\MemberController::class, 'tampilmember']);
+Route::get('/member/tampiluser',[App\Http\Controllers\MemberController::class, 'tampiluser']);
 
 Route::post('/akses','AksesController@create');
 Route::get('/akses','AksesController@tampil');
