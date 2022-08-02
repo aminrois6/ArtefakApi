@@ -97,7 +97,8 @@ Route::delete('/artefak/{id}','ArtefakController@destroy');
 
 Route::options('/berkas/upload', 'BerkasController@option');
 Route::post('/berkas/upload','BerkasController@create');
-Route::post('/berkas','BerkasController@tampil');
+Route::options('/berkas', 'BerkasController@option');
+Route::get('/berkas','BerkasController@tampil');
 Route::post('/berkas/awal','BerkasController@tampilawal');
 Route::post('/berkas/{id}','BerkasController@update');
 Route::options('/berkas/{id}', 'BerkasController@option');
@@ -108,3 +109,6 @@ Route::post('/backlog','BacklogController@create');
 Route::get('/backlog','BacklogController@tampil');
 Route::put('/backlog/{id}','BacklogController@update');
 Route::delete('/backlog/{id}','BacklogController@destroy');
+
+Route::options('/berkasbacklog', 'BerkasbacklogController@option');
+Route::get('/berkasbacklog','BerkasbacklogController@tampil');

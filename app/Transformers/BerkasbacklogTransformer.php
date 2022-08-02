@@ -2,22 +2,20 @@
 
 namespace App\Transformers;
 
-use App\berkas;
+use App\berkasbacklog;
 use League\Fractal\TransformerAbstract;
 
-class BerkasTransformer extends TransformerAbstract
+class BerkasbacklogTransformer extends TransformerAbstract
 {
-    public function transform(berkas $Model)
+    public function transform(berkasbacklog $Model)
     {
         return [
-            'id_berkas' => $Model->id_berkas,
-            'artefak_project' => [
-                'id_artefak' => $Model->id_artefak,
-                'nama_artefak' => $Model->nama_artefak,
-                'deskripsi_artefak' => $Model->deskripsi_artefak,
-                     'project' => [
-                        'id_project' => $Model->id_project,
-                        'nama_project' => $Model->nama_project,
+            'id_berkas_backlog' => $Model->id_berkas_backlog,
+                'backlog' => [
+                    'id_backlog' => $Model->id_backlog,
+                    'project' => [
+                            'id_project' => $Model->id_project,
+                            'nama_project' => $Model->nama_project,
                             'user' => [
                                 'id_user' => $Model->id_user,
                                 'email_user' => $Model->email_user,
@@ -50,13 +48,18 @@ class BerkasTransformer extends TransformerAbstract
                         'patch' => $Model->patch,
                         'fase_release' => $Model->fase_release,
                     ],
+                    'isi_backlog' => $Model->isi_backlog,
+                    'status_backlog' => $Model->status_backlog,
+                    'jenis_backlog' => $Model->jenis_backlog,
+                    'priority_backlog' => $Model->priority_backlog,
+                    'order_backlog' => $Model->order_backlog,
                     'jenis' => [
                         'id_jenis' => $Model->id_jenis,
                         'nama_jenis' => $Model->nama_jenis,
-                    ],
-            ],
-            'nama_berkas' => $Model->nama_berkas,
-            'isi_berkas' => $Model->isi_berkas,   
+                    ], 
+                ],
+            'nama_berkas_backlog' => $Model->nama_berkas,
+            'isi_berkas_backlog' => $Model->isi_berkas,   
         ];
     }
 }

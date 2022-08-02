@@ -3,14 +3,14 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\berkas;
+use App\berkasbacklog;
 use DB;
-use App\Transformers\BerkasTransformer;
+use App\Transformers\BerkasbacklogTransformer;
 use League\Fractal\Pagination\IlluminatePaginatorAdapter;
 use File;
 use Storage;
 
-class BerkasController extends Controller
+class BerkasbacklogController extends Controller
 { 
   public function option(Request $request){
         header("Access-Control-Allow-Origin: *");
@@ -22,10 +22,10 @@ class BerkasController extends Controller
       header("Access-Control-Allow-Origin: *");
       header ("Content-Type: application/json");
       
-      $data = berkas::join('artefak_project', 'artefak_project.id_artefak', '=', 'berkas.id_artefak')
-      ->join('project', 'project.id_project', '=', 'artefak_project.id_project')    
-      ->join('versi', 'versi.id_versi', '=', 'artefak_project.id_versi')
-      ->join('jenis_artefak', 'jenis_artefak.id_jenis', '=', 'artefak_project.id_jenis')
+      $data = berkasbacklog::join('backlog', 'backlog.id_backlog', '=', 'berkas_backlog.id_backlog')
+      ->join('project', 'project.id_project', '=', 'backlog.id_project')    
+      ->join('versi', 'versi.id_versi', '=', 'backlog.id_versi')
+      ->join('jenis_artefak', 'jenis_artefak.id_jenis', '=', 'backlog.id_jenis')
       ->join('user', 'user.id_user', '=', 'project.id_user')
       ->join('sdlc', 'sdlc.id_sdlc', '=', 'project.id_sdlc')
       ->paginate(100);
@@ -33,7 +33,7 @@ class BerkasController extends Controller
 
       return fractal()
             ->collection($data)
-            ->transformWith(new BerkasTransformer)
+            ->transformWith(new BerkasbacklogTransformer)
             ->paginateWith(new IlluminatePaginatorAdapter($data))
             ->addMeta([
               
@@ -47,19 +47,19 @@ class BerkasController extends Controller
       header ("Content-Type: application/json");
       $cari = $request->id_artefak;
       
-      $data = berkas::join('artefak_project', 'artefak_project.id_artefak', '=', 'berkas.id_artefak')
-      ->join('project', 'project.id_project', '=', 'artefak_project.id_project')    
-      ->join('versi', 'versi.id_versi', '=', 'artefak_project.id_versi')
-      ->join('jenis_artefak', 'jenis_artefak.id_jenis', '=', 'artefak_project.id_jenis') 
+      $data = berkasbacklog::join('backlog', 'backlog.id_backlog', '=', 'berkas_backlog.id_backlog')
+      ->join('project', 'project.id_project', '=', 'backlog.id_project')    
+      ->join('versi', 'versi.id_versi', '=', 'backlogbacklog.id_versi')
+      ->join('jenis_artefak', 'jenis_artefak.id_jenis', '=', 'backlogbacklog.id_jenis') 
       ->join('user', 'user.id_user', '=', 'project.id_user')
       ->join('sdlc', 'sdlc.id_sdlc', '=', 'project.id_sdlc')
-      ->where ('berkas.id_artefak', '=', $cari) 
+      ->where ('berkas.id_backlog', '=', $cari) 
       ->paginate(100);
       // return response()->json($data);
 
       return fractal()
             ->collection($data)
-            ->transformWith(new BerkasTransformer)
+            ->transformWith(new BerkasbacklogTransformer)
             ->paginateWith(new IlluminatePaginatorAdapter($data))
             ->addMeta([
               
@@ -75,17 +75,17 @@ class BerkasController extends Controller
       header ("Content-Type: application/json");
       // header ("Content-Type: *");
         
-      $data = new berkas();
+      $data = new berkasbacklog();
       $path = $request->file_artefak->store('/artefak', 'public'); 
       $namafile = $request->file_artefak;
-      $nama_berkas=$namafile->getClientOriginalName();
+      $nama_berkas_backlog=$namafile->getClientOriginalName();
       // $ext=pathinfo($nama_berkas, PATHINFO_EXTENSION);
       // $data = new artefak();
 
 
-    	$data->id_artefak = $request->id_artefak;
-    	$data->nama_berkas = $nama_berkas;
-    	$data->isi_berkas = $path;
+    	$data->id_backlog = $request->id_backlog;
+    	$data->nama_berkas_backlog = $nama_berkas_backlog;
+    	$data->isi_berkas_backlog = $path;
 
     	$data->save();
     	return response()->json($data);
@@ -99,13 +99,13 @@ class BerkasController extends Controller
         
     	extract($request->json()->all());
       // $id_artefak = $request->id_artefak;
-      $nama_berkas = $request->nama_berkas;
+      $nama_berkas_backlog = $request->nama_berkas_backlog;
       // $isi_berkas = $request->isi_berkas;
 
-  		$data = berkas::find($id);
+  		$data = berkasbacklog::find($id);
 
   		// $data->id_artefak = $id_artefak;
-    	$data->nama_berkas = $nama_berkas;
+    	$data->nama_berkas_backlog = $nama_berkas_backlog;
     	// $data->isi_berkas = $isi_berkas;
 
 		$data->save();
@@ -118,8 +118,8 @@ class BerkasController extends Controller
         header("Access-Control-Allow-Methods: POST, GET, PUT, DELETE, OPTIONS");
         header ("Content-Type: application/json");
         
-      $data = berkas::find($id);
-      $path = $data->isi_berkas;
+      $data = berkasbacklog::find($id);
+      $path = $data->isi_berkas_backlog;
       Storage::disk('public')->delete($path);
       $data->delete();
 	
@@ -132,8 +132,8 @@ class BerkasController extends Controller
       	header("Access-Control-Allow-Methods: POST, GET, PUT, DELETE, OPTIONS");
         header ("Content-Type: application/json");
         
-      $data = berkas::where('id_artefak', $id);
-      $path = $data->isi_berkas;
+      $data = berkasbacklog::where('id_backlog', $id);
+      $path = $data->isi_berkas_backlog;
       Storage::disk('public')->delete($path);
       $data->delete();
 	
