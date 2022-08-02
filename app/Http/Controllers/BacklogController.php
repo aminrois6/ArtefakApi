@@ -131,7 +131,7 @@ class BacklogController extends Controller
             $data->isi_backlog = $isi_backlog;
             $data->status_backlog = $status_backlog;
             $data->jenis_backlog = $jenis_backlog;
-            $data->priority_backlog = $priority;
+            $data->priority_backlog = $priority_backlog;
             $data->order_backlog = $order_backlog;
             $data->id_jenis = $id_jenis;
 

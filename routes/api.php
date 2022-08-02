@@ -107,8 +107,10 @@ Route::delete('/berkas/relasi/{id}','BerkasController@destroy2');
 
 Route::post('/backlog','BacklogController@create');
 Route::get('/backlog','BacklogController@tampil');
-Route::put('/backlog/{id}','BacklogController@update');
+Route::post('/backlog/project','BacklogController@tampilproject');
+Route::post('/backlog/{id}','BacklogController@update');
 Route::delete('/backlog/{id}','BacklogController@destroy');
 
 Route::options('/berkasbacklog', 'BerkasbacklogController@option');
 Route::get('/berkasbacklog','BerkasbacklogController@tampil');
+Route::post('/berkasbacklog','BerkasbacklogController@create');
