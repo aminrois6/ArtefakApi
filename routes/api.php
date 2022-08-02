@@ -58,7 +58,8 @@ Route::get('/project/tampil',[App\Http\Controllers\ProjectController::class, 'ta
 Route::options('/member', 'MemberController@option');
 Route::post('/member','MemberController@create');
 Route::get('/member','MemberController@tampil'); 
-Route::put('/member/{id}','MemberController@update');
+Route::options('/member/{id}', 'MemberController@option');
+Route::post('/member/{id}','MemberController@update');
 Route::options('/member/{id}', 'MemberController@option');
 Route::delete('/member/{id}','MemberController@destroy');
 Route::get('/member/tampil',[App\Http\Controllers\MemberController::class, 'tampilmember']);
