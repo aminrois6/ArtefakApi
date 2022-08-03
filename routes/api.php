@@ -64,6 +64,7 @@ Route::options('/member/{id}', 'MemberController@option');
 Route::delete('/member/{id}','MemberController@destroy');
 Route::get('/member/tampil',[App\Http\Controllers\MemberController::class, 'tampilmember']);
 Route::get('/member/tampiluser',[App\Http\Controllers\MemberController::class, 'tampiluser']);
+Route::get('/member/cariuser',[App\Http\Controllers\MemberController::class, 'tampiluser2']);
 
 Route::post('/akses','AksesController@create');
 Route::get('/akses','AksesController@tampil');

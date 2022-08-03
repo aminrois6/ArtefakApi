@@ -85,6 +85,34 @@ class MemberController extends Controller
             ])
             ->toArray();
     }
+    public function tampiluser2(Request $request)
+    {
+      header("Access-Control-Allow-Origin: *");
+      header("Access-Control-Allow-Methods: POST, GET, PUT, DELETE, OPTIONS");
+      header ("Content-Type: *");
+
+      $cariproject = $request->id_project;
+      $cariuser = $request->id_user;
+
+
+      $data = member::join('project', 'project.id_project', '=', 'member_project.id_project')
+      // ->join('user', 'user.id_user', '=', 'member_project.id_user')
+      ->join('role_project', 'role_project.id_role_project', '=', 'member_project.id_role_project')
+      ->join('user', 'user.id_user', '=', 'project.id_user')
+      ->join('sdlc', 'sdlc.id_sdlc', '=', 'project.id_sdlc')
+      ->where ('member_project.id_project', '=', $cariproject)   
+      ->where ('member_project.id_user', '=', $cariuser)  
+      ->paginate(10);
+
+      return fractal()
+            ->collection($data)
+            ->transformWith(new MemberTransformer)
+            ->paginateWith(new IlluminatePaginatorAdapter($data))
+            ->addMeta([
+              
+            ])
+            ->toArray();
+    }
 
     public function create(Request $request)
     {
