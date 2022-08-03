@@ -126,17 +126,21 @@ class BerkasController extends Controller
 	  return response()->json($data);
     }
 
-    public function destroy2($id)
+    public function destroy2(Request $request, $id)
     {
       header("Access-Control-Allow-Origin: *");
       	header("Access-Control-Allow-Methods: POST, GET, PUT, DELETE, OPTIONS");
         header ("Content-Type: application/json");
         
-      $data = berkas::where('id_artefak', $id);
-      $path = $data->isi_berkas;
-      Storage::disk('public')->delete($path);
-      $data->delete();
-	
+      $data = berkas::join('artefak_project', 'artefak_project.id_artefak', '=', 'berkas.id_artefak')
+      ->where('berkas.id_artefak', '=', $id);
+      // $data = DB::table('berkas')
+      // ->where('id_artefak','like',"%".$id."%")
       return response()->json($data);
+      // $path = $data->isi_berkas;
+      // Storage::disk('public')->delete($path);
+      // $data->delete();
+	
+      // return response()->json($data);
     }
 }
