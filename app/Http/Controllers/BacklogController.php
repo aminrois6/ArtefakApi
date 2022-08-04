@@ -20,11 +20,12 @@ class BacklogController extends Controller
       header("Access-Control-Allow-Origin: *");
       header ("Content-Type: application/json");
 
-      $data = backlog::join('project', 'project.id_project', '=', 'backlog.id_project')   
-      ->join('versi', 'versi.id_versi', '=', 'backlog.id_versi')
-      ->join('jenis_artefak', 'jenis_artefak.id_jenis', '=', 'backlog.id_jenis')
+      $data = backlog::join('jenis_backlog', 'jenis_backlog.id_jenis_backlog', '=', 'backlog.id_jenis_backlog')
+      // ->join('project', 'project.id_project', '=', 'backlog.id_project')
+      ->join('project', 'project.id_project', '=', 'jenis_backlog.id_project')
+      ->join('sdlc', 'sdlc.id_sdlc', '=', 'jenis_backlog.id_sdlc')   
+      ->join('versi', 'versi.id_versi', '=', 'jenis_backlog.id_versi')
       ->join('user', 'user.id_user', '=', 'project.id_user')
-      ->join('sdlc', 'sdlc.id_sdlc', '=', 'project.id_sdlc')
       ->paginate(100);
       // return response()->json($data);
 
@@ -41,14 +42,14 @@ class BacklogController extends Controller
     {
       header("Access-Control-Allow-Origin: *");
       header ("Content-Type: application/json");
-      $cari = $request->id_project;
+      $cari = $request->id_jenis_backlog;
       
-      $data = backlog::join('project', 'project.id_project', '=', 'backlog.id_project')   
-      ->join('versi', 'versi.id_versi', '=', 'backlog.id_versi')
-      ->join('jenis_artefak', 'jenis_artefak.id_jenis', '=', 'backlog.id_jenis')
+      $data = backlog::join('jenis_backlog', 'jenis_backlog.id_jenis_backlog', '=', 'backlog.id_jenis_backlog')
+      ->join('project', 'project.id_project', '=', 'jenis_backlog.id_project')
+      ->join('sdlc', 'sdlc.id_sdlc', '=', 'jenis_backlog.id_sdlc')   
+      ->join('versi', 'versi.id_versi', '=', 'jenis_backlog.id_versi')
       ->join('user', 'user.id_user', '=', 'project.id_user')
-      ->join('sdlc', 'sdlc.id_sdlc', '=', 'project.id_sdlc')
-      ->where ( 'backlog.id_project', '=', $cari ) 
+      ->where ( 'backlog.id_jenis_backlog', '=', $cari ) 
       ->paginate(100);
       // return response()->json($data);
 
@@ -68,14 +69,12 @@ class BacklogController extends Controller
             header ("Content-Type: *");
         
         $data = new backlog();
-        $data->id_project = $request->id_project;
-        $data->id_versi = $request->id_versi;
+        $data->id_jenis_backlog = $request->id_jenis_backlog;
+        $data->nama_backlog = $request->nama_backlog;
         $data->isi_backlog = $request->isi_backlog;
         $data->status_backlog = $request->status_backlog;
-        $data->jenis_backlog = $request->jenis_backlog;
         $data->priority_backlog = $request->priority_backlog;
         $data->order_backlog = $request->order_backlog;
-        $data->id_jenis = $request->id_jenis;
 
         $data->save();
         // return response()->json($data);
@@ -91,14 +90,12 @@ class BacklogController extends Controller
         header ("Content-Type: *");
         
         $data = new backlog();
-        $data->id_project = $request->id_project;
-        $data->id_versi = $request->id_versi;
+        $data->id_jenis_backlog = $request->id_jenis_backlog;
+        $data->nama_backlog = $request->nama_backlog;
         $data->isi_backlog = $request->isi_backlog;
         $data->status_backlog = $request->status_backlog;
-        $data->jenis_backlog = $request->jenis_backlog;
         $data->priority_backlog = $request->priority_backlog;
         $data->order_backlog = $request->order_backlog;
-        $data->id_jenis = $request->id_jenis;
 
         $data->save();
         // return response()->json($data);
@@ -115,25 +112,21 @@ class BacklogController extends Controller
         header ("Content-Type: application/json");
         
         extract($request->json()->all());
-            $id_project = $request->id_project;
-            $id_versi = $request->id_versi;
+            $id_jenis_backlog = $request->id_jenis_backlog;
+            $nama_backlog = $request->nama_backlog;
             $isi_backlog = $request->isi_backlog;
             $status_backlog = $request->status_backlog;
-            $jenis_backlog = $request->jenis_backlog;
             $priority_backlog = $request->priority_backlog;
             $order_backlog = $request->order_backlog;
-            $id_jenis = $request->id_jenis;
 
             $data = backlog::find($id);
 
-            $data->id_project = $id_project;
-            $data->id_versi = $id_versi;
+            $data->id_jenis_backlog = $id_jenis_backlog;
+            $data->nama_backlog = $nama_backlog;
             $data->isi_backlog = $isi_backlog;
             $data->status_backlog = $status_backlog;
-            $data->jenis_backlog = $jenis_backlog;
             $data->priority_backlog = $priority_backlog;
             $data->order_backlog = $order_backlog;
-            $data->id_jenis = $id_jenis;
 
         $data->save();
         return response()->json($data);

@@ -23,11 +23,6 @@ class BerkasbacklogController extends Controller
       header ("Content-Type: application/json");
       
       $data = berkasbacklog::join('backlog', 'backlog.id_backlog', '=', 'berkas_backlog.id_backlog')
-      ->join('project', 'project.id_project', '=', 'backlog.id_project')    
-      ->join('versi', 'versi.id_versi', '=', 'backlog.id_versi')
-      ->join('jenis_artefak', 'jenis_artefak.id_jenis', '=', 'backlog.id_jenis')
-      ->join('user', 'user.id_user', '=', 'project.id_user')
-      ->join('sdlc', 'sdlc.id_sdlc', '=', 'project.id_sdlc')
       ->paginate(100);
       // return response()->json($data);
 
@@ -45,15 +40,10 @@ class BerkasbacklogController extends Controller
     {
       header("Access-Control-Allow-Origin: *");
       header ("Content-Type: application/json");
-      $cari = $request->id_artefak;
+      $cari = $request->id_backlog;
       
       $data = berkasbacklog::join('backlog', 'backlog.id_backlog', '=', 'berkas_backlog.id_backlog')
-      ->join('project', 'project.id_project', '=', 'backlog.id_project')    
-      ->join('versi', 'versi.id_versi', '=', 'backlogbacklog.id_versi')
-      ->join('jenis_artefak', 'jenis_artefak.id_jenis', '=', 'backlogbacklog.id_jenis') 
-      ->join('user', 'user.id_user', '=', 'project.id_user')
-      ->join('sdlc', 'sdlc.id_sdlc', '=', 'project.id_sdlc')
-      ->where ('berkas.id_backlog', '=', $cari) 
+      ->where('berkas_backlog.id_backlog', '=', $cari)
       ->paginate(100);
       // return response()->json($data);
 

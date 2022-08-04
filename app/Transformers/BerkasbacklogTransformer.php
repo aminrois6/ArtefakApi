@@ -58,8 +58,8 @@ class BerkasbacklogTransformer extends TransformerAbstract
                         'nama_jenis' => $Model->nama_jenis,
                     ], 
                 ],
-            'nama_berkas_backlog' => $Model->nama_berkas,
-            'isi_berkas_backlog' => $Model->isi_berkas,   
+            'nama_berkas_backlog' => $Model->nama_berkas_backlog,
+            'isi_berkas_backlog' => $Model->isi_berkas_backlog,   
         ];
     }
 }

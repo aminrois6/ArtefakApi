@@ -116,3 +116,9 @@ Route::delete('/backlog/{id}','BacklogController@destroy');
 Route::options('/berkasbacklog', 'BerkasbacklogController@option');
 Route::get('/berkasbacklog','BerkasbacklogController@tampil');
 Route::post('/berkasbacklog','BerkasbacklogController@create');
+
+Route::post('/jenisbacklog','JenisbacklogController@create');
+Route::get('/jenisbacklog','JenisbacklogController@tampilsemua');
+Route::post('/jenisbacklog/data','JenisbacklogController@tampil');
+Route::post('/jenisbacklog/{id}','JenisbacklogController@update');
+Route::delete('/jenisbacklog/{id}','JenisbacklogController@destroy');
