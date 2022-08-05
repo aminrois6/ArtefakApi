@@ -118,18 +118,28 @@ Route::options('/berkas/relasi/{id}', 'BerkasController@option');
 Route::delete('/berkas/relasi/{id}','BerkasController@destroy2');
 
 Route::post('/backlog','BacklogController@create');
+Route::post('/backlog/awal','BacklogController@createawal');
 Route::get('/backlog','BacklogController@tampil');
-Route::post('/backlog/project','BacklogController@tampilproject');
+// Route::post('/backlog/project','BacklogController@tampilproject');
+Route::get('/backlog/project',[App\Http\Controllers\BacklogController::class, 'tampilproject']);
+Route::options('/backlog/{id}', 'BacklogController@option');
 Route::post('/backlog/{id}','BacklogController@update');
+Route::post('/backlog/kosong/{id}','BacklogController@update2');
 Route::delete('/backlog/{id}','BacklogController@destroy');
-
+ 
 Route::options('/berkasbacklog', 'BerkasbacklogController@option');
 Route::get('/berkasbacklog','BerkasbacklogController@tampil');
-Route::post('/berkasbacklog','BerkasbacklogController@create');
+Route::options('/berkasbacklog/upload', 'BerkasbacklogController@option');
+Route::post('/berkasbacklog/upload','BerkasbacklogController@create');
+Route::post('/berkasbacklog/awal','BerkasbacklogController@tampilawal');
+Route::options('/berkasbacklog/{id}', 'BerkasbacklogController@option');
+Route::delete('/berkasbacklog/{id}','BerkasbacklogController@destroy');
+Route::options('/berkasbacklog/relasi/{id}', 'BerkasbacklogController@option');
+Route::delete('/berkasbacklog/relasi/{id}','BerkasbacklogController@destroy2');
 
 Route::post('/jenisbacklog','JenisbacklogController@create');
 Route::get('/jenisbacklog','JenisbacklogController@tampilsemua');
 Route::options('/berkasbacklog/data', 'JenisbacklogController@tampil');
 Route::post('/jenisbacklog/data','JenisbacklogController@tampil');
-Route::post('/jenisbacklog/{id}','JenisbacklogController@update');
 Route::delete('/jenisbacklog/{id}','JenisbacklogController@destroy');
+Route::post('/jenisbacklog/{id}','JenisbacklogController@update');
