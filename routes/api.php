@@ -77,6 +77,7 @@ Route::put('/invite/{id}','InviteController@update');
 Route::delete('/invite/{id}','InviteController@destroy');
 
 Route::post('/versi','VersiController@create');
+Route::post('/versi/kosong','VersiController@createawal');
 Route::options('/versi', 'VersiController@option');
 Route::get('/versi','VersiController@tampil');
 // Route::post('/versi/project','VersiController@tampilproject');

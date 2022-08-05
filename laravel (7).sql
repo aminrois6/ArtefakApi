@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 04 Agu 2022 pada 23.46
+-- Waktu pembuatan: 06 Agu 2022 pada 01.21
 -- Versi server: 10.4.21-MariaDB
 -- Versi PHP: 7.4.25
 
@@ -56,31 +56,35 @@ CREATE TABLE `artefak_project` (
 --
 
 INSERT INTO `artefak_project` (`id_artefak`, `id_project`, `id_versi`, `nama_artefak`, `deskripsi_artefak`, `id_jenis`) VALUES
-(2, 2, 1, 'coba2', '', 3),
-(3, 2, 1, 'coba res', 'coba coba 2', 2),
-(4, 2, 1, 'File Download', 'Mencoba Download File', 2),
-(5, 2, 1, 'Download', 'Download', 2),
-(6, 2, 1, 'coba4a', 'sa', 2),
-(7, 2, 1, 'design coba', '', 4),
-(8, 2, 1, 'design coba2', ' ', 4),
-(9, 2, 1, 'design coba3', ' ', 4),
-(10, 17, 1, 'cuci tangan', '', 2),
-(11, 17, 1, 'Ngambil Pangan', ' ', 2),
-(12, 17, 1, 'Ngambil Lauk', ' ', 2),
-(13, 4, 1, 'apa coba', ' ', 2),
-(14, 4, 1, 'isi sendiri', ' ', 4),
-(16, 4, 1, 'sd', ' ', 5),
-(18, 2, 1, 'Proses Pembuatan Login', ' ', 4),
-(19, 2, 1, 'Terserah Lahs', 's', 5),
-(20, 2, 1, 'ada', ' ', 5),
-(21, 17, 1, 'atas', ' ', 4),
-(23, 20, 1, 'coba', ' ', 2),
-(24, 20, 1, 'coba2', ' ', 2),
 (25, 28, 1, 'coba', ' ', 2),
 (28, 29, 1, 'bisa', '', 2),
 (29, 30, 1, 'ada2', 'coba', 2),
-(31, 2, 1, 'tahap realease', '', 6),
-(38, 12, 1, 'coba', '', 2);
+(38, 12, 1, 'coba', '', 2),
+(41, 46, 3, 'ada', '', 4),
+(42, 46, 3, 'ada', '', 5),
+(43, 12, 8, 'cnc', '', 2),
+(44, 30, 1, 'fds', '', 2),
+(45, 12, 8, 'jhjkh', '', 2),
+(48, 46, 1, 'dfsdf', '', 2),
+(50, 30, 1, 'sdf', '', 2),
+(51, 30, 1, 'as', '', 2),
+(52, 30, 1, 'dsd', 'sa', 2),
+(55, 52, 17, 'coba 1', '', 2),
+(56, 52, 17, 'coba2', '', 2),
+(57, 52, 17, 'coba3', '', 2),
+(58, 52, 17, 'coba4', '', 2),
+(59, 52, 17, 'coba5', '', 2),
+(60, 52, 17, 'coba1', '', 4),
+(61, 52, 17, 'coba2', '', 4),
+(62, 52, 17, 'coba3', '', 4),
+(63, 52, 17, 'coba4', '', 4),
+(64, 52, 17, 'coba5', '', 4),
+(65, 52, 17, 'coba1', '', 5),
+(66, 52, 17, 'coba2', '', 5),
+(67, 52, 17, 'coba3', '', 5),
+(68, 52, 17, 'coba4', '', 5),
+(69, 52, 17, 'coba5', '', 5),
+(71, 52, 17, 'coba1', '', 7);
 
 -- --------------------------------------------------------
 
@@ -103,7 +107,13 @@ CREATE TABLE `backlog` (
 --
 
 INSERT INTO `backlog` (`id_backlog`, `id_jenis_backlog`, `nama_backlog`, `isi_backlog`, `status_backlog`, `priority_backlog`, `order_backlog`) VALUES
-(1, 1, 'coba', 'coba', 'coba', 'coba', 'coba');
+(1, 1, 'coba', 'coba', 'coba', 'coba', 'coba'),
+(2, 4, 'ada', '', '', '', ''),
+(3, 4, 'lagi', '', '', '', ''),
+(4, 5, 'coba', '', '', '', ''),
+(5, 8, 'coba1', '', '', '', ''),
+(6, 9, 'coba', 'da', '', '', ''),
+(7, 6, 'coba1', '', '', '', '');
 
 -- --------------------------------------------------------
 
@@ -123,11 +133,8 @@ CREATE TABLE `berkas` (
 --
 
 INSERT INTO `berkas` (`id_berkas`, `id_artefak`, `nama_berkas`, `isi_berkas`) VALUES
-(13, 3, '4.png', 'artefak/JeBIsvnUhYvfwgxhjCQ0DxjWJQO4YVJHTRgPh40s.png'),
-(14, 3, '3.png', 'artefak/T1V7IlcpHWcnMWDGLjInbj6aeoE3dfNxVaZ04C6S.png'),
-(21, 10, '43487643_2218604948351935_7589971845059706880_n.png', 'artefak/pyW9gPbptrIcjMaklr4Ganiw9k0CON4UaAiwdD7H.png'),
-(23, 5, '1024px-WhatsApp.svg.png', 'artefak/SSAoTtd7DXfjSmC6hNTQ713o4all5QgPe7WqsOyZ.png'),
-(24, 29, '70_big.jpg', 'artefak/TfsfGubtnospP9WeaypUoJHVoprXPtpWdroVqT1L.jpeg');
+(24, 29, '70_big.jpg', 'artefak/TfsfGubtnospP9WeaypUoJHVoprXPtpWdroVqT1L.jpeg'),
+(33, 55, '70_big.jpg', 'artefak/F8s1CthB0TvxsbZcY1cHHWc8eGH9Mneyzdxay46Z.jpeg');
 
 -- --------------------------------------------------------
 
@@ -141,6 +148,16 @@ CREATE TABLE `berkas_backlog` (
   `nama_berkas_backlog` varchar(50) NOT NULL,
   `isi_berkas_backlog` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data untuk tabel `berkas_backlog`
+--
+
+INSERT INTO `berkas_backlog` (`id_berkas_backlog`, `id_backlog`, `nama_berkas_backlog`, `isi_berkas_backlog`) VALUES
+(1, 2, '1.jpg', 'artefak/lZbOskql5dXgU6yG86AS1frOAcqqbzuzWBrLavo4.jpeg'),
+(2, 2, '1.jpg', 'artefak/mxyxbcVsEGwkTvEZD0QJFwzlaH0o9NONstHLYiuI.jpeg'),
+(3, 4, '70_big.jpg', 'artefak/s9gTJejCb41HhaTI9pbgtsLJVaS3UJVGXUlvMobT.jpeg'),
+(4, 6, 'Capture.PNG', 'artefak/1L5zuMBsz5KXbYWKFS1OOkcioGu1afwoBGKOta9l.png');
 
 -- --------------------------------------------------------
 
@@ -170,13 +187,6 @@ CREATE TABLE `invite` (
   `date_accept` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Dumping data untuk tabel `invite`
---
-
-INSERT INTO `invite` (`id_invite`, `id_user1`, `id_user2`, `id_project`, `date_sent`, `date_accept`) VALUES
-(2, 1, 2, 2, '2019-07-01', '2019-07-17');
-
 -- --------------------------------------------------------
 
 --
@@ -198,7 +208,8 @@ INSERT INTO `jenis_artefak` (`id_jenis`, `nama_jenis`, `id_sdlc`) VALUES
 (3, 'Backlog', 3),
 (4, 'Design', 1),
 (5, 'Proses', 1),
-(6, 'Release', 1);
+(6, 'Release', 1),
+(7, 'Maintenance', 1);
 
 -- --------------------------------------------------------
 
@@ -219,7 +230,15 @@ CREATE TABLE `jenis_backlog` (
 --
 
 INSERT INTO `jenis_backlog` (`id_jenis_backlog`, `id_project`, `id_sdlc`, `id_versi`, `nama_jenis_backlog`) VALUES
-(1, 3, 3, 1, 'coba');
+(1, 3, 3, 1, 'coba'),
+(2, 3, 3, 1, 'coba2'),
+(4, 48, 3, 13, 'coba'),
+(5, 48, 3, 13, 'lagi'),
+(6, 48, 3, 13, 'sfsf'),
+(7, 49, 3, 14, 'coba'),
+(8, 48, 3, 13, 'apa'),
+(9, 50, 3, 15, 'ada'),
+(10, 50, 3, 15, 'ada');
 
 -- --------------------------------------------------------
 
@@ -240,13 +259,22 @@ CREATE TABLE `member_project` (
 
 INSERT INTO `member_project` (`id_member`, `id_project`, `id_user`, `id_role_project`) VALUES
 (6, 30, 1, 1),
-(7, 17, 9, 3),
-(8, 2, 9, 1),
-(9, 2, 8, 1),
 (15, 30, 9, 2),
 (17, 30, 3, 4),
-(19, 2, 1, 2),
-(20, 4, 1, 2);
+(21, 12, 9, 1),
+(23, 46, 1, 2),
+(24, 46, 9, 3),
+(26, 12, 1, 2),
+(27, 48, 9, 2),
+(28, 48, 1, 4),
+(29, 49, 1, 2),
+(30, 49, 9, 3),
+(31, 50, 1, 2),
+(32, 51, 1, 2),
+(33, 52, 9, 2),
+(34, 53, 9, 2),
+(35, 54, 9, 2),
+(36, 52, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -278,32 +306,25 @@ CREATE TABLE `project` (
 --
 
 INSERT INTO `project` (`id_project`, `nama_project`, `id_user`, `id_sdlc`) VALUES
-(2, 'VSM', 1, 1),
 (3, 'Diagram', 1, 3),
-(4, 'VSM', 1, 1),
 (12, 'coba1', 3, 1),
 (13, 'coba 2', 3, 1),
 (14, 'coba 2', 3, 1),
-(17, 'Makanan', 1, 1),
-(19, 'coba4', 1, 3),
-(20, 'coba5', 1, 1),
-(24, 'coba10', 1, 3),
-(25, 'coba11', 1, 3),
-(26, 'coba12', 1, 1),
-(27, 'coba13', 1, 3),
 (28, 'Amin Rois', 2, 1),
 (29, 'coba', 8, 1),
 (30, 'coba', 9, 1),
 (31, 'artef', 16, 1),
 (32, 'ketiga', 16, 3),
-(34, 'mana lagi', 1, 3),
-(35, 'coba lagi', 1, 3),
-(37, 'mana lagi', 1, 3),
-(38, 'mana lagi', 1, 3),
-(39, 'mana lagi 2', 1, 3),
-(41, 'ayo', 1, 1),
 (42, 'percobaan', 3, 1),
-(43, 'percobaan', 3, 3);
+(43, 'percobaan', 3, 3),
+(46, 'ayo', 1, 1),
+(48, 'mana lagi', 9, 3),
+(49, 'mana lagi', 1, 3),
+(50, 'mana mana', 1, 3),
+(51, 'coba lagi', 1, 1),
+(52, 'percobaan', 9, 1),
+(53, 'VSM', 9, 1),
+(54, 'Lagi', 9, 1);
 
 -- --------------------------------------------------------
 
@@ -322,7 +343,7 @@ CREATE TABLE `role_project` (
 
 INSERT INTO `role_project` (`id_role_project`, `nama_role_project`) VALUES
 (1, 'Analis'),
-(2, 'Pemilik Project'),
+(2, 'Admin'),
 (3, 'Programmer'),
 (4, 'Tester');
 
@@ -378,7 +399,8 @@ INSERT INTO `user` (`id_user`, `email_user`, `password_user`, `nama_user`) VALUE
 (13, 'coba3@gmail.com', '123', 'cobacoba3'),
 (14, 'ketiga@gmail.com', '123', 'ketiga'),
 (15, 'cobalah@gmail.com', '123', 'cobalah'),
-(16, 'aminrois265@gmail.com', '123', 'Rois Amin');
+(16, 'aminrois265@gmail.com', '123', 'Rois Amin'),
+(17, 'ahmadiaziz312@gmail.com', '123', 'AminR');
 
 -- --------------------------------------------------------
 
@@ -400,7 +422,15 @@ CREATE TABLE `versi` (
 --
 
 INSERT INTO `versi` (`id_versi`, `id_project`, `major`, `minor`, `patch`, `fase_release`) VALUES
-(1, 3, '1', '0', '0', 'coba');
+(1, 3, '1', '0', '0', 'coba'),
+(3, 46, '1', '2', '0', '2022-08-05'),
+(8, 12, '1', '0', '0', '2022-08-05'),
+(9, 30, '1', '0', '0', '2022-08-05'),
+(11, 46, '1', '2', '3', '2022-08-05'),
+(13, 48, '1', '0', '0', '2022-08-05'),
+(14, 49, '1', '0', '0', '2022-08-05'),
+(15, 50, '1', '0', '0', '2022-08-05'),
+(17, 52, '1', '0', '0', '2022-08-06');
 
 --
 -- Indexes for dumped tables
@@ -538,25 +568,25 @@ ALTER TABLE `akses`
 -- AUTO_INCREMENT untuk tabel `artefak_project`
 --
 ALTER TABLE `artefak_project`
-  MODIFY `id_artefak` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
+  MODIFY `id_artefak` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=72;
 
 --
 -- AUTO_INCREMENT untuk tabel `backlog`
 --
 ALTER TABLE `backlog`
-  MODIFY `id_backlog` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_backlog` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT untuk tabel `berkas`
 --
 ALTER TABLE `berkas`
-  MODIFY `id_berkas` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `id_berkas` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
 
 --
 -- AUTO_INCREMENT untuk tabel `berkas_backlog`
 --
 ALTER TABLE `berkas_backlog`
-  MODIFY `id_berkas_backlog` int(20) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_berkas_backlog` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT untuk tabel `index`
@@ -574,19 +604,19 @@ ALTER TABLE `invite`
 -- AUTO_INCREMENT untuk tabel `jenis_artefak`
 --
 ALTER TABLE `jenis_artefak`
-  MODIFY `id_jenis` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id_jenis` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT untuk tabel `jenis_backlog`
 --
 ALTER TABLE `jenis_backlog`
-  MODIFY `id_jenis_backlog` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_jenis_backlog` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT untuk tabel `member_project`
 --
 ALTER TABLE `member_project`
-  MODIFY `id_member` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id_member` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
 
 --
 -- AUTO_INCREMENT untuk tabel `migrations`
@@ -598,7 +628,7 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT untuk tabel `project`
 --
 ALTER TABLE `project`
-  MODIFY `id_project` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
+  MODIFY `id_project` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=55;
 
 --
 -- AUTO_INCREMENT untuk tabel `role_project`
@@ -616,13 +646,13 @@ ALTER TABLE `sdlc`
 -- AUTO_INCREMENT untuk tabel `user`
 --
 ALTER TABLE `user`
-  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT untuk tabel `versi`
 --
 ALTER TABLE `versi`
-  MODIFY `id_versi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_versi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
