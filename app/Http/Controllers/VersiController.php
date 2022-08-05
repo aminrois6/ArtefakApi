@@ -145,6 +145,8 @@ class VersiController extends Controller
     {
       header("Access-Control-Allow-Origin: *");
         header ("Content-Type: *");
+
+      // Route::delete('jenis/relasi/{id}', function ($id));
       $data = versi::find($id);
       $data->delete();
 	

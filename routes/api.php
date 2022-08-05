@@ -17,7 +17,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 Route::options('/users', 'UsersController@option');
-Route::post('/users','UsersController@create');
+Route::post('/users','UsersController@create'); 
 Route::get('/users','UsersController@tampil');
 Route::options('/users/update/{id}', 'UsersController@option');
 Route::post('/users/update/{id}','UsersController@update');
@@ -77,11 +77,12 @@ Route::put('/invite/{id}','InviteController@update');
 Route::delete('/invite/{id}','InviteController@destroy');
 
 Route::post('/versi','VersiController@create');
+Route::options('/versi', 'VersiController@option');
 Route::get('/versi','VersiController@tampil');
 // Route::post('/versi/project','VersiController@tampilproject');
+Route::options('/versi/tampil', 'VersiController@option');
 Route::get('/versi/tampil',[App\Http\Controllers\VersiController::class, 'tampilproject']);
 Route::get('/versi/tampilversi',[App\Http\Controllers\VersiController::class, 'tampilversi']);
-
 Route::post('/versi/{id}','VersiController@update');
 Route::options('/versi/{id}', 'VersiController@option');
 Route::delete('/versi/{id}','VersiController@destroy');
@@ -102,6 +103,7 @@ Route::post('/artefak/versi','ArtefakController@tampilversi');
 Route::options('/artefak/{id}', 'ArtefakController@option');
 Route::post('/artefak/{id}','ArtefakController@update');
 Route::post('/artefak/kosong/{id}','ArtefakController@update2');
+Route::options('/artefak/{id}', 'ArtefakController@option');
 Route::delete('/artefak/{id}','ArtefakController@destroy');
 
 Route::options('/berkas/upload', 'BerkasController@option');
@@ -112,6 +114,7 @@ Route::post('/berkas/awal','BerkasController@tampilawal');
 Route::post('/berkas/{id}','BerkasController@update');
 Route::options('/berkas/{id}', 'BerkasController@option');
 Route::delete('/berkas/{id}','BerkasController@destroy');
+Route::options('/berkas/relasi/{id}', 'BerkasController@option');
 Route::delete('/berkas/relasi/{id}','BerkasController@destroy2');
 
 Route::post('/backlog','BacklogController@create');
@@ -126,6 +129,7 @@ Route::post('/berkasbacklog','BerkasbacklogController@create');
 
 Route::post('/jenisbacklog','JenisbacklogController@create');
 Route::get('/jenisbacklog','JenisbacklogController@tampilsemua');
+Route::options('/berkasbacklog/data', 'JenisbacklogController@tampil');
 Route::post('/jenisbacklog/data','JenisbacklogController@tampil');
 Route::post('/jenisbacklog/{id}','JenisbacklogController@update');
 Route::delete('/jenisbacklog/{id}','JenisbacklogController@destroy');

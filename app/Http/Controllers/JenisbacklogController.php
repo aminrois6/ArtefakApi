@@ -40,11 +40,14 @@ class JenisbacklogController extends Controller
       header("Access-Control-Allow-Methods: POST, GET, PUT, DELETE, OPTIONS");
       header ("Content-Type: *");
 
-      $cari = $request->id_sdlc;
+      $cari1 = $request->id_project;
+      $cari2= $request->id_versi;
       $data = jenisbacklog::join('project', 'project.id_project', '=', 'jenis_backlog.id_project')
       ->join('sdlc', 'sdlc.id_sdlc', '=', 'jenis_backlog.id_sdlc')   
       ->join('versi', 'versi.id_versi', '=', 'jenis_backlog.id_versi')
-      ->where ( 'jenis_backlog.id_sdlc', 'LIKE', '%' . $cari . '%' )
+      ->join('user', 'user.id_user', '=', 'project.id_user')
+      ->where('jenis_backlog.id_project', '=', $cari1)
+      ->where('jenis_backlog.id_versi', '=', $cari2)
       ->paginate(100);
 
      return fractal()

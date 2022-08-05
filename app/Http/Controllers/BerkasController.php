@@ -136,11 +136,11 @@ class BerkasController extends Controller
       ->where('berkas.id_artefak', '=', $id);
       // $data = DB::table('berkas')
       // ->where('id_artefak','like',"%".$id."%")
-      return response()->json($data);
+      // return response()->json($data);
       // $path = $data->isi_berkas;
       // Storage::disk('public')->delete($path);
       // $data->delete();
 	
-      // return response()->json($data);
+      return response()->json($data);
     }
 }

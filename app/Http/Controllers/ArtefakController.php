@@ -181,7 +181,7 @@ class ArtefakController extends Controller
       	header ("Content-Type: *");
 		Route::delete('barkas/relasi/{id}', function ($id) {
 		});
-        $data = artefak::find($id);
+        $data = artefak::find($id); 
         $path = $data->file_artefak;
         Storage::disk('public')->delete($path);
         $data->delete();
