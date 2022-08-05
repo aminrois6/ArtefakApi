@@ -43,6 +43,12 @@ class BerkasbacklogController extends Controller
       $cari = $request->id_backlog;
       
       $data = berkasbacklog::join('backlog', 'backlog.id_backlog', '=', 'berkas_backlog.id_backlog')
+      ->join('jenis_backlog', 'jenis_backlog.id_jenis_backlog', '=', 'backlog.id_jenis_backlog')
+      ->join('project', 'project.id_project', '=', 'jenis_backlog.id_project')
+      ->join('sdlc', 'sdlc.id_sdlc', '=', 'jenis_backlog.id_sdlc')   
+      ->join('versi', 'versi.id_versi', '=', 'jenis_backlog.id_versi')
+      ->join('user', 'user.id_user', '=', 'project.id_user')
+      // ->join('sdlc', 'sdlc.id_sdlc', '=', 'project.id_sdlc')
       ->where('berkas_backlog.id_backlog', '=', $cari)
       ->paginate(100);
       // return response()->json($data);
