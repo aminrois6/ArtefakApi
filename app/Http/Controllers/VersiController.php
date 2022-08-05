@@ -10,6 +10,11 @@ use League\Fractal\Pagination\IlluminatePaginatorAdapter;
 
 class VersiController extends Controller
 {
+  public function option(Request $request){
+        header("Access-Control-Allow-Origin: *");
+        header("Access-Control-Allow-Methods: POST, GET, PUT, DELETE, OPTIONS");
+        header ("Content-Type: application/json");
+  }
     public function tampil(Request $request)
     {
       header("Access-Control-Allow-Origin: *");
@@ -30,11 +35,56 @@ class VersiController extends Controller
             ])
             ->toArray();
     }
+    public function tampilversi(Request $request)
+    {
+      header("Access-Control-Allow-Origin: *");
+      header ("Content-Type: application/json");
+      $cari=$request->id_versi;
+      $data = versi::join('project', 'project.id_project', '=', 'versi.id_project')
+      ->join('user', 'user.id_user', '=', 'project.id_user')   
+      ->join('sdlc', 'sdlc.id_sdlc', '=', 'project.id_sdlc')  
+      ->where('id_versi','=', $cari)
+      ->paginate(100);
+      // return response()->json($data);
+
+      return fractal()
+            ->collection($data)
+            ->transformWith(new VersiTransformer)
+            ->paginateWith(new IlluminatePaginatorAdapter($data))
+            ->addMeta([
+              
+            ])
+            ->toArray();
+    }
+    public function tampilproject(Request $request)
+    {
+      header("Access-Control-Allow-Origin: *");
+      header ("Content-Type: application/json");
+      $cari=$request->id_project;
+      $data = versi::join('project', 'project.id_project', '=', 'versi.id_project')
+      ->join('user', 'user.id_user', '=', 'project.id_user')   
+      ->join('sdlc', 'sdlc.id_sdlc', '=', 'project.id_sdlc')  
+      ->where('versi.id_project','=', $cari)
+      ->paginate(100);
+      // return response()->json($data);
+
+      return fractal()
+            ->collection($data)
+            ->transformWith(new VersiTransformer)
+            ->paginateWith(new IlluminatePaginatorAdapter($data))
+            ->addMeta([
+              
+            ])
+            ->toArray();
+    }
 
 
     public function create(Request $request)
     {
     	// extract($request->json()->all());
+        header("Access-Control-Allow-Origin: *");
+        header("Access-Control-Allow-Methods: POST, GET, PUT, DELETE, OPTIONS");
+        header ("Content-Type: *");
 
     	$data = new versi();
 
@@ -47,11 +97,32 @@ class VersiController extends Controller
     	$data->save();
     	return response()->json($data);
     }
+    public function createawal(Request $request)
+    {
+      // extract($request->json()->all());
+        header("Access-Control-Allow-Origin: *");
+        header("Access-Control-Allow-Methods: POST, GET, PUT, DELETE, OPTIONS");
+        header ("Content-Type: *");
+
+      $data = new versi();
+
+      $data->id_project = $request->id_project;
+      $data->major = $request->major;
+      $data->minor = $request->minor;
+      $data->patch = $request->patch;
+      $data->fase_release = "";
+
+      $data->save();
+      return response()->json($data);
+    }
 
     public function update(Request $request, $id)
     {
     	// extract($request->json()->all());
        
+        header("Access-Control-Allow-Origin: *");
+        header("Access-Control-Allow-Methods: POST, GET, PUT, DELETE, OPTIONS");
+        header ("Content-Type: *");
       $id_project = $request->id_project;
       $major = $request->major;
       $minor = $request->minor;
@@ -72,7 +143,9 @@ class VersiController extends Controller
 
     public function destroy($id)
     {
-      $data = akses::find($id);
+      header("Access-Control-Allow-Origin: *");
+        header ("Content-Type: *");
+      $data = versi::find($id);
       $data->delete();
 	
 	  return response()->json($data);

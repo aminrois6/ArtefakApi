@@ -78,7 +78,12 @@ Route::delete('/invite/{id}','InviteController@destroy');
 
 Route::post('/versi','VersiController@create');
 Route::get('/versi','VersiController@tampil');
-Route::put('/versi/{id}','VersiController@update');
+// Route::post('/versi/project','VersiController@tampilproject');
+Route::get('/versi/tampil',[App\Http\Controllers\VersiController::class, 'tampilproject']);
+Route::get('/versi/tampilversi',[App\Http\Controllers\VersiController::class, 'tampilversi']);
+
+Route::post('/versi/{id}','VersiController@update');
+Route::options('/versi/{id}', 'VersiController@option');
 Route::delete('/versi/{id}','VersiController@destroy');
 
 Route::post('/index','IndexController@create');
@@ -92,6 +97,8 @@ Route::post('/artefak/awal','ArtefakController@createawal');
 Route::get('/artefak','ArtefakController@tampil');
 // Route::get('/artefak/project',[App\Http\Controllers\ArtefakController::class, 'tampilproject']);
 Route::post('/artefak/project','ArtefakController@tampilproject');
+// Route::get('/artefak/versi',[App\Http\Controllers\ArtefakController::class, 'tampilversi']);
+Route::post('/artefak/versi','ArtefakController@tampilversi');
 Route::options('/artefak/{id}', 'ArtefakController@option');
 Route::post('/artefak/{id}','ArtefakController@update');
 Route::post('/artefak/kosong/{id}','ArtefakController@update2');
