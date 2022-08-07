@@ -66,6 +66,31 @@ class BerkasController extends Controller
             ])
             ->toArray();
     }
+    public function tampiluser(Request $request)
+    {
+      header("Access-Control-Allow-Origin: *");
+      header ("Content-Type: application/json");
+      $cari = $request->id_user;
+      
+      $data = berkas::join('artefak_project', 'artefak_project.id_artefak', '=', 'berkas.id_artefak')
+      ->join('project', 'project.id_project', '=', 'artefak_project.id_project')    
+      ->join('versi', 'versi.id_versi', '=', 'artefak_project.id_versi')
+      ->join('jenis_artefak', 'jenis_artefak.id_jenis', '=', 'artefak_project.id_jenis') 
+      ->join('user', 'user.id_user', '=', 'project.id_user')
+      ->join('sdlc', 'sdlc.id_sdlc', '=', 'project.id_sdlc')
+      ->where ('project.id_user', '=', $cari) 
+      ->paginate(100);
+      // return response()->json($data);
+
+      return fractal()
+            ->collection($data)
+            ->transformWith(new BerkasTransformer)
+            ->paginateWith(new IlluminatePaginatorAdapter($data))
+            ->addMeta([
+              
+            ])
+            ->toArray();
+    }
 
     public function create(Request $request)
     {

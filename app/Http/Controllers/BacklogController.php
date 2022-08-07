@@ -62,6 +62,30 @@ class BacklogController extends Controller
             ])
             ->toArray();
     }
+    public function tampiluser(Request $request)
+    {
+      header("Access-Control-Allow-Origin: *");
+      header ("Content-Type: application/json");
+      $cari = $request->id_user;
+      
+      $data = backlog::join('jenis_backlog', 'jenis_backlog.id_jenis_backlog', '=', 'backlog.id_jenis_backlog')
+      ->join('project', 'project.id_project', '=', 'jenis_backlog.id_project')
+      ->join('sdlc', 'sdlc.id_sdlc', '=', 'jenis_backlog.id_sdlc')   
+      ->join('versi', 'versi.id_versi', '=', 'jenis_backlog.id_versi')
+      ->join('user', 'user.id_user', '=', 'project.id_user')
+      ->where ( 'project.id_user', '=', $cari ) 
+      ->paginate(1000);
+      // return response()->json($data);
+
+      return fractal()
+            ->collection($data)
+            ->transformWith(new BacklogTransformer)
+            ->paginateWith(new IlluminatePaginatorAdapter($data))
+            ->addMeta([
+              
+            ])
+            ->toArray();
+    }
     public function create(Request $request)
     {
         header("Access-Control-Allow-Origin: *");
