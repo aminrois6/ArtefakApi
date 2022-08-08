@@ -67,13 +67,15 @@ class MemberController extends Controller
       header ("Content-Type: *");
 
       $cari = $request->id_user;
+      $cari2 = 2;
 
       $data = member::join('project', 'project.id_project', '=', 'member_project.id_project')
       // ->join('user', 'user.id_user', '=', 'member_project.id_user')
       ->join('role_project', 'role_project.id_role_project', '=', 'member_project.id_role_project')
       ->join('user', 'user.id_user', '=', 'project.id_user')
       ->join('sdlc', 'sdlc.id_sdlc', '=', 'project.id_sdlc')
-      ->where ('member_project.id_user', '=', $cari)   
+      ->where ('member_project.id_user', '=', $cari)
+      ->where ('member_project.id_role_project', '!=', $cari2)    
       ->paginate(10);
 
       return fractal()

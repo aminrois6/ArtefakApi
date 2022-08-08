@@ -57,6 +57,28 @@ class ProjectController extends Controller
             ])
             ->toArray();
     }
+    public function tampilproject(Request $request)
+    {
+      header("Access-Control-Allow-Origin: *");
+      header("Access-Control-Allow-Methods: POST, GET, PUT, DELETE, OPTIONS");
+      header ("Content-Type: *");
+
+      $cari = $request->id_project;
+
+      $data = project::join('user', 'user.id_user', '=', 'project.id_user')
+      ->join('sdlc', 'sdlc.id_sdlc', '=', 'project.id_sdlc') 
+      ->where ( 'id_project', '=', $cari)   
+      ->paginate(8);
+
+      return fractal()
+            ->collection($data)
+            ->transformWith(new ProjectTransformer)
+            ->paginateWith(new IlluminatePaginatorAdapter($data))
+            ->addMeta([
+              
+            ])
+            ->toArray();
+    }
 
     public function create(Request $request)
     {
