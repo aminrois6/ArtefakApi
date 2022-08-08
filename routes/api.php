@@ -132,6 +132,7 @@ Route::get('/backlog/user',[App\Http\Controllers\BacklogController::class, 'tamp
 Route::options('/backlog/{id}', 'BacklogController@option');
 Route::post('/backlog/{id}','BacklogController@update');
 Route::post('/backlog/kosong/{id}','BacklogController@update2');
+Route::options('/backlog/{id}', 'BacklogController@option');
 Route::delete('/backlog/{id}','BacklogController@destroy');
  
 Route::options('/berkasbacklog', 'BerkasbacklogController@option');

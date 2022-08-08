@@ -182,15 +182,15 @@ class BerkasController extends Controller
       	header("Access-Control-Allow-Methods: POST, GET, PUT, DELETE, OPTIONS");
         header ("Content-Type: application/json");
         
-      // $data = berkas::join('artefak_project', 'artefak_project.id_artefak', '=', 'berkas.id_artefak')
-      // ->where('berkas.id_artefak', '=', $id);
+      $data = berkas::join('artefak_project', 'artefak_project.id_artefak', '=', 'berkas.id_artefak')
+      ->where('berkas.id_artefak', '=', $id);
       // // $data = DB::table('berkas')
       // // ->where('id_artefak','like',"%".$id."%")
       // // return response()->json($data);
       // // $path = $data->isi_berkas;
       // // Storage::disk('public')->delete($path);
       // // $data->delete();
-      $data = berkas::where('berkas.id_artefak', '=', $id);
+      // $data = berkas::where('berkas.id_artefak', '=', $id);
       $path = $data->isi_berkas;
       Storage::disk('public')->delete($path);
       $data->delete();

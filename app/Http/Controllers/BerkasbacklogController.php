@@ -179,8 +179,9 @@ class BerkasbacklogController extends Controller
       header("Access-Control-Allow-Origin: *");
       	header("Access-Control-Allow-Methods: POST, GET, PUT, DELETE, OPTIONS");
         header ("Content-Type: application/json");
-        
-      $data = berkasbacklog::where('id_backlog', $id);
+        $data = berkasbacklog::join('artefak_project', 'artefak_project.id_artefak', '=', 'berkas.id_artefak')
+      ->where('berkas.id_artefak', '=', $id);
+      // $data = berkasbacklog::where('id_backlog', $id);
       $path = $data->isi_berkas_backlog;
       Storage::disk('public')->delete($path);
       $data->delete();

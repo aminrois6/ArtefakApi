@@ -175,7 +175,12 @@ class BacklogController extends Controller
         return response()->json($data);
     }
     public function destroy($id)
-    {
+    {   
+        header("Access-Control-Allow-Origin: *");
+        header ("Content-Type: *");
+        // Route::delete('barkasbacklog/relasi/{id}', function ($id) {
+        // });
+
       $data = backlog::find($id);
       $data->delete();
     
