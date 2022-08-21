@@ -153,3 +153,7 @@ Route::options('/berkasbacklog/data', 'JenisbacklogController@tampil');
 Route::post('/jenisbacklog/data','JenisbacklogController@tampil');
 Route::delete('/jenisbacklog/{id}','JenisbacklogController@destroy');
 Route::post('/jenisbacklog/{id}','JenisbacklogController@update');
+
+Route::post('/proses','Preprocessing@preprocess');
+Route::options('/prosesvsm','VSM@option');
+Route::post('/prosesvsm','VSM@get_rank');
