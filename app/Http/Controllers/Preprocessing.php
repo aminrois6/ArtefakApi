@@ -26,6 +26,11 @@ class Preprocessing extends Controller
      * @param  string  $query
      * @return array
     */
+    public function option(Request $request){
+        header("Access-Control-Allow-Origin: *");
+        header("Access-Control-Allow-Methods: POST, GET, PUT, DELETE, OPTIONS");
+        header ("Content-Type: application/json");
+  }
     public static function preprocess( $query )
     {        
         header("Access-Control-Allow-Origin: *");
@@ -39,6 +44,22 @@ class Preprocessing extends Controller
         $query_filter   = Preprocessing::filtering($query_token);
         $query_dasar    = Preprocessing::stemming($query_filter);
         return $query_dasar;
+    }
+    public static function preprocess2( Request $request )
+    {        
+        header("Access-Control-Allow-Origin: *");
+        header("Access-Control-Allow-Methods: POST, GET, PUT, DELETE, OPTIONS");
+        header ("Content-Type: application/json");
+
+        $query = $request->cari_query;                        
+        // return $query;
+        $query_case     = Preprocessing::case_folding($query);
+        $query_token    = Preprocessing::tokenizing($query_case);
+        $query_filter   = Preprocessing::filtering($query_token);
+        $query_dasar    = Preprocessing::stemming($query_filter);
+        return ['tokenizing'=>$query_token, 
+        'filtering'=>$query_filter,
+        'stemming'=>$query_dasar];
     }
 
     /**

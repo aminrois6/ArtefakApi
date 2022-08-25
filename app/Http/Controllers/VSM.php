@@ -74,7 +74,7 @@ class VSM
         $bobot          = VSM::bobot($query, $dokumen_term, $idf);
         $cos_similarity = VSM::cosine_similarity($bobot);
 
-        return $cos_similarity;
+        return ['query'=>$query,'dokumen'=>$arrayDokumen,'similarity'=>$cos_similarity];
     }
 
     /**
