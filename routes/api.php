@@ -155,5 +155,5 @@ Route::delete('/jenisbacklog/{id}','JenisbacklogController@destroy');
 Route::post('/jenisbacklog/{id}','JenisbacklogController@update');
 
 Route::post('/proses','Preprocessing@preprocess');
-Route::options('/prosesvsm','VSM@option');
+// Route::options('/prosesvsm','VSM@option');
 Route::post('/prosesvsm','VSM@get_rank');

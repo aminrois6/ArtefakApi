@@ -33,14 +33,38 @@ class VSM
         $query =  $preprocess::preprocess($request->cari);
         // return $query;
         // $dokumen = implode(" ", $preprocess::preprocess($request->nama));
+        // return $request->dokumen;
+        $manage = json_decode($request->dokumen, true);
+        // return $manage;
          $arrayDokumen = [];
-            foreach ($request->dokumen as $value) {
-                $arrayDoc = [
-                    'id_doc' =>$value['id_doc'],
-                    'dokumen' => implode(" ", $preprocess::preprocess($value['nama']))
-                ];
-                array_push($arrayDokumen, $arrayDoc);
-            }
+         foreach ($manage as $value) {
+             if($request->tanda==='nama_project'){
+                    $arrayDoc = [
+                        'id_doc' =>$value['id_project'],
+                        'dokumen' => implode(" ", $preprocess::preprocess($value['nama_project']))
+                    ];
+                    array_push($arrayDokumen, $arrayDoc);
+                }else if ($request->tanda==='nama_artefak') {
+                    $arrayDoc = [
+                        'id_doc' =>$value['id_artefak'],
+                        'dokumen' => implode(" ", $preprocess::preprocess($value['nama_artefak']))
+                    ];
+                    array_push($arrayDokumen, $arrayDoc);
+                }else if ($request->tanda==='keterangan') {
+                    $arrayDoc = [
+                        'id_doc' =>$value['id_artefak'],
+                        'dokumen' => implode(" ", $preprocess::preprocess($value['keterangan']))
+                    ];
+                    array_push($arrayDokumen, $arrayDoc);
+                }else if ($request->tanda==='nama_berkas') {
+                    $arrayDoc = [
+                        'id_doc' =>$value['id_berkas'],
+                        'dokumen' => implode(" ", $preprocess::preprocess($value['nama_berkas']))
+                    ];
+                    array_push($arrayDokumen, $arrayDoc);
+                }
+        
+        }
         // return $arrayDokumen;
 
         $term           = VSM::term($query, $arrayDokumen);
@@ -124,6 +148,7 @@ class VSM
         foreach ($term as $key => $value) {
             $arrayDf[$key] = 0;
         }
+        // return $arrayDf;
 
         // pengisian df dari $query
         foreach ($term as $key => $value) {
@@ -133,6 +158,7 @@ class VSM
                 }
             }
         }
+        // return $arrayDf;
 
         // pengisian df dari dokumen
         foreach ($term as $key => $value) {
